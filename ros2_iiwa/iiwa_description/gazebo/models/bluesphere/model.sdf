@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version='1.9'>
+
+    <model name='bluesphere'>
+	  <pose>1 -0.5 0.6 0 0 0</pose> 
+	  <link name="sphere_link">
+	    <inertial>
+	      <mass>1.0</mass> 
+	      <inertia>
+		<ixx>0.01</ixx>
+		<iyy>0.01</iyy>
+		<izz>0.01</izz>
+		<ixy>0.0</ixy>
+		<ixz>0.0</ixz>
+		<iyz>0.0</iyz>
+	      </inertia>
+	    </inertial>
+	    <collision name='sphere_collision'>
+	      <geometry>
+		<sphere>
+		  <radius>0.15</radius> 
+		</sphere>
+	      </geometry>
+	    </collision>
+	    <visual name='sphere_visual'>
+	      <geometry>
+		<sphere>
+		  <radius>0.15</radius> 
+		</sphere>
+	      </geometry>
+	      <material>
+		<ambient>0.0 0.0 0.3 1</ambient> 
+		<diffuse>0.0 0.0 0.7 1</diffuse> 
+		<specular>0.5 0.5 0.5 1</specular> 
+	      </material>
+	    </visual>
+	  </link>
+	  <static>false</static> <!-- Specifica che la sfera non è statica (può muoversi) -->
+	</model>
+</sdf>
