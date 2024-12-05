@@ -21,7 +21,7 @@ public:
       params.maxThreshold = 200;
       params.filterByArea = false;
       params.filterByCircularity = true;
-      params.minCircularity = 0.8;
+      params.minCircularity = 0.1;
       params.filterByConvexity = false;
       params.minConvexity = 0.87;
       params.filterByInertia = false;

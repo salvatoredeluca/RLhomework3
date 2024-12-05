@@ -13,8 +13,8 @@ def launch_setup(context, *args, **kwargs):
         'image_is_rectified': True,
         'marker_size': LaunchConfiguration('marker_size'),
         'marker_id': LaunchConfiguration('marker_id'),
-        'reference_frame': LaunchConfiguration('reference_frame'),
-        'camera_frame': 'stereo_gazebo_' + eye + '_camera_optical_frame',
+        'reference_frame': 'camera_link_optical',
+        'camera_frame': 'camera_link_optical',
         'marker_frame': LaunchConfiguration('marker_frame'),
         'corner_refinement': LaunchConfiguration('corner_refinement'),
     }
@@ -23,8 +23,11 @@ def launch_setup(context, *args, **kwargs):
         package='aruco_ros',
         executable='single',
         parameters=[aruco_single_params],
-        remappings=[('/camera_info', '/stereo/' + eye + '/camera_info'),
-                    ('/image', '/stereo/' + eye + '/image_rect_color')],
+        arguments=[
+            '--ros-args', 
+            '-r', '/image:=/videocamera',
+          
+        ]
     )
 
     return [aruco_single]

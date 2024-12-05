@@ -142,7 +142,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             'initial_positions_file',
-            default_value='initial_positions.yaml',
+            default_value='initial_a.yaml',
             description='Configuration file of robot initial positions for simulation.',
         )
     )
@@ -306,6 +306,13 @@ def generate_launch_description():
         ],
         condition=UnlessCondition(OrSubstitution(use_planning,use_sim)),
     )
+
+
+    joint_state_publisher_node = Node(
+        package="joint_state_publisher_gui",
+        executable="joint_state_publisher_gui",
+    )
+
     iiwa_simulation_world = PathJoinSubstitution(
         [FindPackageShare(description_package),
             'gazebo/worlds', 'empty.world']
@@ -334,7 +341,6 @@ def generate_launch_description():
             condition=IfCondition(use_sim),
     )
 
-#bridge for the camera messages#
     bridge_camera = Node(
         package='ros_ign_bridge',
         executable='parameter_bridge',
@@ -342,12 +348,13 @@ def generate_launch_description():
             '/camera@sensor_msgs/msg/Image@gz.msgs.Image',
             '/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
             '--ros-args', 
-            '-r', '/camera:=/videocamera',
+            '-r', '/camera:=/videocamera', 
+            
         ],
         output='screen',
         condition=IfCondition(use_vision),
     )
-################################
+
 
     spawn_entity = Node(
         package='ros_gz_sim',
@@ -366,8 +373,7 @@ def generate_launch_description():
                    [namespace, 'controller_manager']],
     )
 
-    
-    
+
 
     external_torque_broadcaster_spawner = Node(
         package='controller_manager',
@@ -421,8 +427,8 @@ def generate_launch_description():
 
    
 
-    nodes = [
-      
+    nodes = [ 
+        #joint_state_publisher_node,
         gazebo,
         control_node,
         bridge_camera,
