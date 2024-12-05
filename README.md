@@ -62,8 +62,8 @@ ros2 launch aruco_ros single.launch.py marker_size:=0.1 marker_id:=201
 On another one execute the task
 ```bash
 ros2 run ros2_kdl_package kdl_vision_effort
-```bash
 
+```
 
 
 
