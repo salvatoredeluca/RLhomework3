@@ -1,8 +1,8 @@
-## 🤖 Robotics Lab Homework3
+## 🤖 ROBOTICS LAB HOMEWORK3
 
 This repository contains the ROS2 packages required for the homework 3 of the course. In the following the instructions to run the packages correctly.
 
-##  Build and Source
+##  BUILD AND SOURCE
 
 Once you cloned the repository, build the packages.
 
