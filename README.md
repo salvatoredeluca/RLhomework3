@@ -2,7 +2,7 @@
 
 This repository contains the ROS2 packages required for the homework 3 of the course. In the following the instructions to run the packages correctly.
 
-## 📦 Build and Source
+##  Build and Source
 
 Once you cloned the repository, build the packages.
 
