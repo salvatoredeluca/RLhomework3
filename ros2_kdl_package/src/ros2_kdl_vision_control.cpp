@@ -57,6 +57,12 @@ class Iiwa_pub_sub : public rclcpp::Node
             aruco_available_= false;
             flag_ = true;
            
+        //    std::cout<<"Insert k : ";
+        //    std::cin>>k_;
+        //    std::cout<<"\nInsert N: ";
+        //    std::cin>>N_;
+        k_=4;
+        N_=5;
 
             // retrieve robot_description param
             auto parameters_client = std::make_shared<rclcpp::SyncParametersClient>(node_handle_, "robot_state_publisher");
@@ -151,7 +157,7 @@ class Iiwa_pub_sub : public rclcpp::Node
 
             aruco_pos_offset_[0]=0;
             aruco_pos_offset_[1]=0;
-            aruco_pos_offset_[2]=0.8;
+            aruco_pos_offset_[2]=0.7;
             //Morale della storia: ricordarsi di fare la trasformazione intermedia e fidarsi di Genny
             KDL::Frame fromLinkToOpticalLink=KDL::Frame::Identity();
             fromLinkToOpticalLink.M=KDL::Rotation::Quaternion(-0.5,0.5,-0.5,0.5);
@@ -278,7 +284,7 @@ class Iiwa_pub_sub : public rclcpp::Node
                     L=L*R.transpose();
                     Eigen::MatrixXd LJ=L*J;
                     Eigen::MatrixXd LJcross=pseudoinverse(LJ);
-                    des_joint_velocities_.data=2*LJcross*sd+3*(Eigen::Matrix<double,7,7>::Identity() - LJcross*LJ)*
+                    des_joint_velocities_.data=k_*LJcross*sd+N_*(Eigen::Matrix<double,7,7>::Identity() - LJcross*LJ)*
                                                             (joint_initial_positions_.data-joint_positions_.data);
 
 
