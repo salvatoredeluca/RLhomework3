@@ -304,7 +304,7 @@ def generate_launch_description():
         parameters=[
             robot_description,
         ],
-        #condition=UnlessCondition(OrSubstitution(use_planning,use_sim)),
+        condition=UnlessCondition(OrSubstitution(use_planning,use_sim)),
     )
 
 
@@ -428,7 +428,7 @@ def generate_launch_description():
    
 
     nodes = [ 
-        joint_state_publisher_node,
+        #joint_state_publisher_node,
         gazebo,
         control_node,
         bridge_camera,
