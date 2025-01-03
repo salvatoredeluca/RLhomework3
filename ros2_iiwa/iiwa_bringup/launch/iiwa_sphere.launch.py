@@ -304,7 +304,7 @@ def generate_launch_description():
         parameters=[
             robot_description,
         ],
-        #condition=UnlessCondition(OrSubstitution(use_planning,use_sim)),
+        condition=UnlessCondition(OrSubstitution(use_planning,use_sim)),
     )
 
 
@@ -315,7 +315,7 @@ def generate_launch_description():
 
     iiwa_simulation_world = PathJoinSubstitution(
         [FindPackageShare(description_package),
-            'gazebo/worlds', 'empty.world']
+            'gazebo/worlds', 'sphere.world']
     )
 
     """declared_arguments.append(DeclareLaunchArgument('gz_args', default_value='-r -v 1 empty.sdf',
@@ -428,7 +428,7 @@ def generate_launch_description():
    
 
     nodes = [ 
-        joint_state_publisher_node,
+        #joint_state_publisher_node,
         gazebo,
         control_node,
         bridge_camera,

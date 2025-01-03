@@ -16,6 +16,25 @@ Then source
 source install/setup.bash 
 ```
 
+## EXECUTE THE DETECTION OF THE BLUE SPHERE
+Launch Gazebo
+```bash
+ros2 launch iiwa_bringup iiwa_sphere.launch.py command_interface:="velocity" robot_controller:="velocity_controller" initial_positions_file:="initial_sphere.yaml"
+
+```
+
+Run the code to detect the sphere correctly
+
+```bash
+ros2 run ros2_opencv ros2_opencv_node
+```
+
+Visualize the result on rqt
+
+```bash
+rqt 
+```
+
 
 ## EXECUTE A POSITIONING TASK AND THE LOOK-AT-POINT TASK
 First launch Gazebo 
